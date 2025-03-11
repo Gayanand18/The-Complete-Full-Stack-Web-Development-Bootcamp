@@ -51,35 +51,40 @@
         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
       </div>
       <div class="modal-body">
-        <form class="row g-3">
+        <form class="row g-3" action="/submit-blog" method="post" id="blogForm">
           <div class="col-md-6">
             <label for="inputTitle" class="form-label">Title</label>
-            <input type="title" class="form-control" id="inputTitle">
+            <input type="text" class="form-control" id="inputTitle" name="title" required>
           </div>
           <div class="col-md-4">
             <label for="inputAuthor" class="form-label">Author</label>
-            <input type="Author" class="form-control" id="inputAuthor">
+            <input type="text" class="form-control" id="inputAuthor" name="author" required>
           </div>
           <div class="col-md-2">
             <label for="postDate" class="form-label">Date</label>
-            <input type="date" class="form-control" id="postDate">
+            <input type="date" class="form-control" id="postDate" name="postDate" required>
           </div>
-          <div class = col-12> Write Your Blog 👇</div>
-          <div class = "col-12" id="editor">
-            <p contenteditable="true"><br /></p>
+          <div class="col-12"> Write Your Blog 👇</div>
+          <div class="col-12" id="editor">
+            <!-- Quill Editor or any rich text editor you use -->
+            <div id="richTextEditor"></div>
           </div>
-          <div>Or Upload file 👇</div>
+
+          <!-- Hidden input field to store editor content -->
+          <input type="hidden" name="content" id="editorContent">
+
           <div class="input-group">
             <input type="file" class="form-control" id="inputGroupFile04" aria-describedby="inputGroupFileAddon04" aria-label="Upload">
-            <!-- <button class="btn btn-outline-secondary" type="button" id="inputGroupFileAddon04">Button</button> -->
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+            <button type="submit" class="btn btn-primary">Post Your blog</button>
           </div>
         </form>
-      </div>
-      <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="button" class="btn btn-primary">Post Your blog</button>
       </div>
     </div>
   </div>
 </div>
+
+
 

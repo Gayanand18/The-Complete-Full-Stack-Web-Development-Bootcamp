@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Recent Blogs</title>
+  <link rel="stylesheet" href="/css/styles.css">
+  <style>
+    .blog-list {
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+      max-width: 600px;
+      margin: auto;
+    }
+    
+    .blog-card {
+      padding: 15px;
+      border: 1px solid #ddd;
+      border-radius: 8px;
+      background: #f9f9f9;
+      box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.1);
+      transition: transform 0.2s;
+    }
+    
+    .blog-card:hover {
+      transform: translateY(-3px);
+    }
+
+    .blog-title {
+      font-size: 18px;
+      font-weight: bold;
+      color: #333;
+      margin-bottom: 5px;
+    }
+
+    .blog-meta {
+      font-size: 14px;
+      color: #666;
+    }
+  </style>
+</head>
+<body>
+  <h2 style="text-align: center;">Recent Blogs</h2>
+  <div class="blog-list">
+    <% recentBlogs.forEach(blog => { %>
+      <a href="<%= blog.url %>" class="blog-card text-decoration-none">
+        <div class="blog-title"><%= blog.title %></div>
+        <div class="blog-meta">By <%= blog.author %> on <%= blog.postDate %></div>
+      </a>
+    <% }); %>
+  </div>
+  <div style="text-align: center; margin-top: 20px;">
+    <a href="/" class="btn btn-primary">Back to Home</a>
+  </div>
+</body>
+</html>

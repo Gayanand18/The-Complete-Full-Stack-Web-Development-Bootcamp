@@ -7,10 +7,32 @@
     integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
 <script src="https://cdn.jsdelivr.net/npm/quill@2.0.3/dist/quill.js"></script>
 <script>
-  const quill = new Quill('#editor', {
-    theme: 'snow'
+  // Initialize Quill editor (Make sure you include Quill.js in your project)
+  var quill = new Quill('#richTextEditor', {
+    theme: 'snow', // or 'bubble'
+    placeholder: 'Write your blog content here...',
+    modules: {
+      toolbar: [
+        [{ 'header': '1' }, { 'header': '2' }, { 'font': [] }],
+        [{ 'list': 'ordered' }, { 'list': 'bullet' }],
+        ['bold', 'italic', 'underline'],
+        [{ 'align': [] }],
+        ['link'],
+        ['blockquote', 'code-block'],
+        [{ 'script': 'sub' }, { 'script': 'super' }],
+        [{ 'direction': 'rtl' }],
+        ['image', 'video']
+      ]
+    }
+  });
+
+  // Capture the content of the Quill editor and set it to the hidden input before form submission
+  document.getElementById('blogForm').addEventListener('submit', function (e) {
+    var content = quill.root.innerHTML;  // Get the HTML content from Quill editor
+    document.getElementById('editorContent').value = content;  // Set content in the hidden input
   });
 </script>
+
 </body>
 
 </html>
