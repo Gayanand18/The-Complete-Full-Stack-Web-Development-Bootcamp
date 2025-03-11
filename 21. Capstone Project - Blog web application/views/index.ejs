@@ -198,24 +198,23 @@
           <div>
             <h4 class="fst-italic">User's Recent Posts</h4>
             <ul class="list-unstyled">
-                <% if (recentBlogs.length > 0) { %>
-                    <% recentBlogs.slice(0, 3).forEach(blog => { %>  <!-- Limit to 3 blogs -->
-                        <li>
-                            <a class="d-flex flex-column py-3 link-body-emphasis text-decoration-none border-top" href="<%= blog.url %>">
-                                <div>
-                                    <h6 class="mb-0"><%= blog.title %></h6>
-                                    <small class="text-body-secondary">By <%= blog.author %> on <%= blog.postDate %></small>
-                                </div>
-                            </a>
-                        </li>
-                    <% }); %>
-                <% } else { %>
-                    <p>No recent blogs available.</p>
-                <% } %>
+              <% if (recentBlogs.length > 0) { %>
+                <% recentBlogs.forEach(blog => { %>
+                  <li>
+                    <a class="d-flex flex-column py-3 link-body-emphasis text-decoration-none border-top" href="<%= blog.url %>">
+                      <div>
+                        <h6 class="mb-0"><%= blog.title %></h6>
+                        <small class="text-body-secondary">By <%= blog.author %> on <%= blog.postDate %></small>
+                      </div>
+                    </a>
+                  </li>
+                <% }); %>
+              <% } else { %>
+                <p>No recent blogs available.</p>
+              <% } %>
             </ul>
             <a href="/recent-blogs" class="btn btn-primary">See More</a>
-        </div>
-        
+          </div>
 
 <!-- Toast Notification -->
 <div class="toast-container position-fixed bottom-0 end-0 p-3">
