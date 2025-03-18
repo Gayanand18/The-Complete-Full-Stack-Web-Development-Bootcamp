@@ -1,5 +1,7 @@
 import express from "express";
 import axios from "axios";
+import {yourAPIKey, yourBearerToken} from "./info.js"
+
 
 const app = express();
 const port = 3000;
@@ -8,8 +10,6 @@ const API_URL = "https://secrets-api.appbrewery.com";
 // TODO: Replace the values below with your own before running this file.
 const yourUsername = "samwillson";
 const yourPassword = "helloWilly";
-const yourAPIKey = "ba451920-33fb-4e8e-96b1-2d56627b48fb";
-const yourBearerToken = "53f1fdad-a14b-4e33-b616-cc2b30ffccc9";
 
 app.get("/", (req, res) => {
   res.render("index.ejs", { content: "API Response." });
