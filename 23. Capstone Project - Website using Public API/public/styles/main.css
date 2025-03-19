@@ -1,0 +1,29 @@
+.gradient-background {
+    background: linear-gradient(300deg, #00bfff, #ff4c68, #ef8172);
+    background-size: 180% 180%;
+    animation: gradient-animation 18s ease infinite;
+  }
+  
+  @keyframes gradient-animation {
+    0% {
+      background-position: 0% 50%;
+    }
+    50% {
+      background-position: 100% 50%;
+    }
+    100% {
+      background-position: 0% 50%;
+    }
+  }
+  .bg-light-blue {
+    background-color: #e6f7ff !important; /* Light blue color */
+}
+.riddle-body{
+  background-color: #e0e7ff;
+}
+.riddle-text{
+  background-color: #a5d8d5;
+}
+.riddle-inputText{
+  background-color: #d3f9f6;
+}
