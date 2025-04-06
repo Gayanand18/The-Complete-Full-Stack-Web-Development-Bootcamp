@@ -1,0 +1,114 @@
+<%- include('partials/header.ejs'); %>
+
+<section class="container">
+    <section class = "container mt-4 subheader" style="background-color: #D4C9BE; padding: 20px; border-radius: 10px; margin-bottom: 20px;">
+        <p>Welcome to <strong> Books Heaven </strong>—a curated list of books I’ve explored, complete with ratings, notes, and recommendations! Here’s what you’ll find:</p>
+        <p><strong> 📊 Ratings (1-10): </strong>Each book comes with my personal rating (10 = life-changing, 1 = not for me). These reflect how much 
+            I enjoyed or learned from them.</p>
+        <p><strong> 📝 Detailed Notes: </strong> I’ve included key takeaways, favorite quotes, and reflections—click "Read my notes" to dive deeper.</p>
+        <p><strong> 🔍 Sort & Filter: </strong> 
+            <ul> <strong>
+                <li>
+                    By Title (A-Z)
+                </li>
+                <li>
+                    By Date (Newest to Oldest)
+                </li>
+                <li>
+                    By Rating (Best First)
+                </li>
+                </strong>
+            </ul>
+        </p>
+    </section>
+    <hr class="divider" style="background-color: #706D54; height: 2px; width: 100%; margin: 0 auto;">
+    <h1 class=" mt-3">BOOKS I'VE READ</h1>
+
+    
+
+    <section class="container mt-3" style="background-color: #F1EFEC; padding: 20px; border-radius: 10px;">
+        <% if (listBooks.length > 0) { %>
+            <div class="book-container">
+                <% listBooks.forEach(book => { %>
+                    <div class="book-card">
+                        <div class="book-header">
+                            <h2 class="book-title"><%= book.book_name %> - BY <%= book.author %></h2>
+                            <div class="book-meta">
+                                <strong>DATE READ:</strong> <%= book.date.toISOString().split('T')[0] %>. 
+                                <strong>HOW STRONGLY I RECOMMEND IT:</strong> <%= book.recommendation %>/10
+                            </div>
+                        </div>
+                        
+                        <div class="book-content-wrapper">
+                            <% if (book.isbn) { %>
+                                <img src="<%= book.coverUrl %>" alt="<%= book.book_name %> cover" class="book-cover" 
+                                     onerror="this.onerror=null;this.parentNode.replaceChild(createNoCoverDiv('<%= book.book_name %>'), this)">
+                            <% } else { %>
+                                <div class="no-cover">No cover available</div>
+                            <% } %>
+                            
+                            <div class="book-text-content">
+                                <% if (book.descriptions) { 
+                                    const words = book.descriptions.split(' ');
+                                    const shortDesc = words.length > 100 ? words.slice(0, 100).join(' ') + '...' : book.descriptions;
+                                %>
+                                    <div class="book-description full-text" style="display:none;"><%= book.descriptions %></div>
+                                    <div class="book-description short-text"><%= shortDesc %></div>
+                                    <% if (words.length > 100) { %>
+                                        <a class="toggle-description" onclick="toggleDescription(this)">Show more</a>
+                                    <% } %>
+                                <% } %>
+                                
+
+                                    <div class="book-notes">
+                                        <a href="/<%= book.id %>-notes" style="text-decoration: none;"><strong>Read my notes</strong></a>, or go to the Amazon page for details and reviews.
+                                    </div>
+
+                            </div>
+                        </div>
+                    </div>
+                <% }); %>
+            </div>
+        <% } else { %>
+            <p>No books found in the collection.</p>
+        <% } %>
+    </section>
+</section>
+<script>
+    function createNoCoverDiv(bookName) {
+        const div = document.createElement('div');
+        div.className = 'no-cover';
+        div.textContent = `No cover for ${bookName}`;
+        return div;
+    }
+
+    function toggleDescription(button) {
+        const card = button.closest('.book-card');
+        const fullText = card.querySelector('.full-text');
+        const shortText = card.querySelector('.short-text');
+        
+        if (fullText.style.display === 'none') {
+            fullText.style.display = 'block';
+            shortText.style.display = 'none';
+            button.textContent = 'Show less';
+        } else {
+            fullText.style.display = 'none';
+            shortText.style.display = 'block';
+            button.textContent = 'Show more';
+        }
+    }
+</script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<%- include('partials/footer.ejs'); %>
