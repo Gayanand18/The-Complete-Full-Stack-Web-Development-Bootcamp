@@ -139,3 +139,4 @@ dist
 #custom files
 info.js
 utils.js
+config.js
